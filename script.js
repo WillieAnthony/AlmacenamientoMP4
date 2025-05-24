@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Elementos del DOM
+    
     const form = document.getElementById('movie-form');
     const idInput = document.getElementById('id');
     const nombreInput = document.getElementById('nombre');
@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const confirmarBtn = document.getElementById('confirmar');
     const errorMessage = document.getElementById('error-message');
     
-    // Variables de estado
     let movies = JSON.parse(localStorage.getItem('movies')) || [];
     let nextId = 1001;
     let selectedRow = null;
@@ -28,10 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
         nombre: 'asc'
     };
     
-    // Inicializar la aplicación
     init();
     
-    // Event listeners
     tipoInput.addEventListener('change', function() {
         if (this.value === 'Serie') {
             temporadaInput.disabled = false;
@@ -49,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
     eliminarBtn.addEventListener('click', () => iniciarAccion('eliminar'));
     buscarBtn.addEventListener('click', buscarPeliculas);
     
-    // Ordenar tabla al hacer clic en los encabezados
     document.querySelectorAll('th[data-sort]').forEach(header => {
         header.addEventListener('click', () => {
             const sortBy = header.getAttribute('data-sort');
@@ -57,30 +53,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Confirmar acción después de ingresar código
     confirmarBtn.addEventListener('click', confirmarAccion);
     
-    // Cerrar modal al hacer clic fuera de él
     window.addEventListener('click', function(event) {
         if (event.target === modal) {
             modal.style.display = 'none';
         }
     });
     
-    // Funciones
     function init() {
-        // Calcular el próximo ID
         if (movies.length > 0) {
             const maxId = Math.max(...movies.map(movie => parseInt(movie.id)));
             nextId = maxId + 1;
         }
         
-        // Generar ID inicial si no hay películas
         if (movies.length === 0) {
             nextId = 1001;
         }
         
-        // Mostrar películas en la tabla
         mostrarPeliculas(movies);
     }
     
@@ -90,14 +80,12 @@ document.addEventListener('DOMContentLoaded', function() {
         temporadaInput.disabled = true;
         selectedRow = null;
         
-        // Quitar el resaltado de la fila seleccionada
         document.querySelectorAll('#table-body tr').forEach(row => {
             row.classList.remove('selected');
         });
     }
     
     function iniciarAccion(accion) {
-        // Validar campos según la acción
         if (accion === 'agregar') {
             if (!validarCampos()) return;
         } else if (accion === 'actualizar' || accion === 'eliminar') {
@@ -109,7 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (accion === 'actualizar' && !validarCampos()) return;
         }
         
-        // Mostrar modal de confirmación
         currentAction = accion;
         modal.style.display = 'block';
         codigoConfirmacionInput.value = '';
@@ -120,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function confirmarAccion() {
         const codigo = codigoConfirmacionInput.value;
         
-        if (codigo === '20060125') {
+        if (codigo === '20060123') {
             modal.style.display = 'none';
             
             switch (currentAction) {
@@ -167,13 +154,12 @@ document.addEventListener('DOMContentLoaded', function() {
             return false;
         }
         
-        // Validar que no exista la misma serie con la misma temporada
         if (tipo === 'Serie') {
             const existe = movies.some(movie => 
                 movie.nombre.toLowerCase() === nombre.toLowerCase() && 
                 movie.tipo === 'Serie' && 
                 movie.temporada === parseInt(temporada) &&
-                (!selectedRow || movie.id !== idInput.value) // Excluir el actual si estamos actualizando
+                (!selectedRow || movie.id !== idInput.value)
             );
             
             if (existe) {
@@ -227,7 +213,6 @@ document.addEventListener('DOMContentLoaded', function() {
         limpiarCampos();
         mostrarPeliculas(movies);
         
-        // Recalcular nextId si eliminamos el último
         if (parseInt(id) === nextId - 1) {
             nextId = movies.length > 0 ? 
                 Math.max(...movies.map(movie => parseInt(movie.id))) + 1 : 
@@ -263,7 +248,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td>${movie.cantidad}</td>
             `;
             
-            // Seleccionar fila al hacer clic
             row.addEventListener('click', function() {
                 document.querySelectorAll('#table-body tr').forEach(r => {
                     r.classList.remove('selected');
@@ -272,7 +256,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.classList.add('selected');
                 selectedRow = this;
                 
-                // Llenar formulario con los datos de la fila seleccionada
                 const movieData = movies.find(m => m.id === this.cells[0].textContent);
                 
                 if (movieData) {
@@ -297,10 +280,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function sortMovies(sortBy) {
-        // Cambiar el estado de ordenación
         sortState[sortBy] = sortState[sortBy] === 'asc' ? 'desc' : 'asc';
         
-        // Ordenar las películas
         movies.sort((a, b) => {
             let valueA, valueB;
             
@@ -321,10 +302,8 @@ document.addEventListener('DOMContentLoaded', function() {
             return 0;
         });
         
-        // Actualizar la tabla
         mostrarPeliculas(movies);
         
-        // Actualizar iconos de ordenación
         document.querySelectorAll('th[data-sort] span').forEach(span => {
             span.textContent = '↓↑';
         });

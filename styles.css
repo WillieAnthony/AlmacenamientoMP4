@@ -134,7 +134,6 @@ tr:hover {
     margin-left: 5px;
 }
 
-/* Modal styles */
 .modal {
     display: none;
     position: fixed;
@@ -167,7 +166,6 @@ tr:hover {
     font-size: 14px;
 }
 
-/* Pastel colors */
 #agregar:hover { background-color: #a0e8af; }
 #actualizar:hover { background-color: #a0c4ff; }
 #eliminar:hover { background-color: #ffa0a0; }
