@@ -33,18 +33,22 @@ h1 {
     color: #6a7fdb;
 }
 
-.form-group input, .form-group select {
+.form-group input,
+.form-group select {
     flex: 1;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
+    background-color: #fafafa;
 }
 
 .button-group {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .button-group button {
@@ -54,6 +58,7 @@ h1 {
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s;
+    min-width: 120px;
 }
 
 #cancelar {
@@ -79,6 +84,7 @@ h1 {
 .search-group {
     display: flex;
     margin: 20px 0;
+    gap: 5px;
 }
 
 #buscador {
@@ -87,6 +93,7 @@ h1 {
     border: 1px solid #ccc;
     border-radius: 4px 0 0 4px;
     font-size: 16px;
+    background-color: #fafafa;
 }
 
 #buscar {
@@ -119,6 +126,7 @@ th {
     background-color: #6a7fdb;
     color: white;
     cursor: pointer;
+    user-select: none;
 }
 
 th:hover {
@@ -127,6 +135,10 @@ th:hover {
 
 tr:hover {
     background-color: #f0f5ff;
+}
+
+tr.selected {
+    background-color: #d8e3ff !important;
 }
 
 .sort-icon {
@@ -152,6 +164,7 @@ tr:hover {
     border-radius: 5px;
     width: 300px;
     text-align: center;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
 .modal-content input {
@@ -159,6 +172,8 @@ tr:hover {
     padding: 8px;
     margin: 10px 0;
     box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .error {
@@ -166,8 +181,19 @@ tr:hover {
     font-size: 14px;
 }
 
-#agregar:hover { background-color: #a0e8af; }
-#actualizar:hover { background-color: #a0c4ff; }
-#eliminar:hover { background-color: #ffa0a0; }
-#cancelar:hover { background-color: #ffa0a0; }
-#buscar:hover { background-color: #5a6fcb; }
+#agregar:hover {
+    background-color: #a0e8af;
+}
+
+#actualizar:hover {
+    background-color: #a0c4ff;
+}
+
+#eliminar:hover,
+#cancelar:hover {
+    background-color: #ffa0a0;
+}
+
+#buscar:hover {
+    background-color: #5a6fcb;
+}

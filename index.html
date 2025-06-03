@@ -1,83 +1,83 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALMACENAMIENTO MP4</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALMACENAMIENTO MP4</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="container">
-        <h1>ALMACENAMIENTO MP4</h1>
-        
-        <form id="movie-form">
-            <div class="form-group">
-                <label for="id">ID:</label>
-                <input type="text" id="id" readonly>
-            </div>
-            
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="tipo">Película/Serie:</label>
-                <select id="tipo" required>
-                    <option value="">Seleccione...</option>
-                    <option value="Película">Película</option>
-                    <option value="Serie">Serie</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="temporada">Temporada:</label>
-                <input type="number" id="temporada" min="0" max="99" disabled>
-            </div>
-            
-            <div class="form-group">
-                <label for="cantidad">Cantidad:</label>
-                <input type="number" id="cantidad" min="1" required>
-            </div>
-            
-            <div class="button-group">
-                <button type="button" id="cancelar">CANCELAR</button>
-                <button type="button" id="agregar">AGREGAR</button>
-                <button type="button" id="actualizar">ACTUALIZAR</button>
-                <button type="button" id="eliminar">ELIMINAR</button>
-            </div>
-        </form>
-        
-        <div class="search-group">
-            <input type="text" id="buscador" placeholder="Buscar por nombre...">
-            <button type="button" id="buscar">BUSCAR</button>
-        </div>
-        
-        <div class="table-container">
-            <table id="movie-table">
-                <thead>
-                    <tr>
-                        <th data-sort="id">ID <span class="sort-icon">↓↑</span></th>
-                        <th data-sort="nombre">Nombre <span class="sort-icon">↓↑</span></th>
-                        <th>Temporada</th>
-                        <th>Cantidad</th>
-                    </tr>
-                </thead>
-                <tbody id="table-body">
-                </tbody>
-            </table>
-        </div>
-        
-        <div id="confirm-modal" class="modal">
-            <div class="modal-content">
-                <p>Ingrese Código De Confirmación</p>
-                <input type="password" id="codigo-confirmacion">
-                <p id="error-message" class="error"></p>
-                <button id="confirmar">CONFIRMAR</button>
-            </div>
-        </div>
+  <div class="container">
+    <h1>ALMACENAMIENTO MP4</h1>
+
+    <form id="movie-form">
+      <div class="form-group">
+        <label for="id">ID:</label>
+        <input type="text" id="id" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required />
+      </div>
+
+      <div class="form-group">
+        <label for="tipo">Película/Serie:</label>
+        <select id="tipo" required>
+          <option value="">Seleccione...</option>
+          <option value="Película">Película</option>
+          <option value="Serie">Serie</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="temporada">Temporada:</label>
+        <input type="number" id="temporada" min="0" max="99" disabled />
+      </div>
+
+      <div class="form-group">
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" min="1" required />
+      </div>
+
+      <div class="button-group">
+        <button type="button" id="cancelar">CANCELAR</button>
+        <button type="button" id="agregar">AGREGAR</button>
+        <button type="button" id="actualizar">ACTUALIZAR</button>
+        <button type="button" id="eliminar">ELIMINAR</button>
+      </div>
+    </form>
+
+    <div class="search-group">
+      <input type="text" id="buscador" placeholder="Buscar por nombre..." />
+      <button type="button" id="buscar">BUSCAR</button>
     </div>
-    
-    <script src="script.js"></script>
+
+    <div class="table-container">
+      <table id="movie-table">
+        <thead>
+          <tr>
+            <th data-sort="idNumerico">ID <span class="sort-icon">↓↑</span></th>
+            <th data-sort="nombre">Nombre <span class="sort-icon">↓↑</span></th>
+            <th>Temporada</th>
+            <th>Cantidad</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+
+    <div id="confirm-modal" class="modal">
+      <div class="modal-content">
+        <p>Ingrese Código De Confirmación</p>
+        <input type="password" id="codigo-confirmacion" />
+        <p id="error-message" class="error"></p>
+        <button id="confirmar">CONFIRMAR</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
