@@ -90,7 +90,7 @@ function iniciarAccion(accion) {
 
 function confirmarAccion() {
   const codigo = codigoConfirmacionInput.value;
-  if (codigo !== '20060123') {
+  if (codigo !== '0') {
     errorMessage.textContent = 'ERROR';
     codigoConfirmacionInput.value = '';
     codigoConfirmacionInput.focus();
